@@ -1,59 +1,56 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
- 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-(unless (package-installed-p 'solarized-dark)
-  (package-refresh-contents)
-  (package-install 'solarized-theme))
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+Plugin 'vim-syntastic/syntastic'
+Plugin 'jnurmine/Zenburn'
+Plugin 'scrooloose/nerdtree'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
-(defvar my-term-shell "/bin/bash")
-(defadvice ansi-term (before force-bash)
-  (interactive (list my-term-shell)))
-(ad-activate 'ansi-term)
+set number
+set relativenumber
+set ruler
+set nocompatible
 
-(global-set-key (kbd "<s-return>") 'ansi-term)
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-(setq scroll-conservatively 100) 
+filetype plugin on
+syntax on
+set background=dark
+colorscheme solarized
 
-(setq ring-bell-function 'ignore)
+set shiftwidth=4
+set tabstop=4
+set expandtab
 
-(when window-system (global-hl-line-mode t))
+set backspace=indent,eol,start
 
-(use-package which-key
-  :ensure t
-  :init
-  (which-key-mode))
+set encoding=utf-8
 
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(put 'set-goal-column 'disabled nil)
+let g:NERDTreeWinPos = "right"
+autocmd VimEnter * NERDTree
 
-(setq inhibit-startup-message t)
- 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (solarized-dark)))
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
- '(package-selected-packages (quote (solarized-theme which-key use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "PfEd" :family "xos4 Terminus ")))))
+set clipboard=unnamed
+
+set ruler
