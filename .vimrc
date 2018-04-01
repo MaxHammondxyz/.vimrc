@@ -18,16 +18,21 @@ filetype plugin indent on    " required
 " see :h vundle for more or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Make vim a little more bearable
+" UI Config 
 set number
 set relativenumber
-set ruler
-set nocompatible
+set cursorline
+set wildmenu
+set showmatch
 set ruler
 
-" Syntax
-filetype plugin on
-syntax on
+" Searching
+set incsearch
+set hlsearch
+
+" Leader Shortcuts
+let mapleader=","
+inoremap jk <esc>
 
 " Tabs
 set shiftwidth=4
@@ -53,3 +58,5 @@ nnoremap <c-l> <c-w>l
 colorscheme solarized
 set background=dark
 set colorcolumn=80
+syntax on
+filetype indent on
