@@ -10,47 +10,46 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'vim-syntastic/syntastic'
-Plugin 'jnurmine/Zenburn'
-Plugin 'scrooloose/nerdtree'
+Bundle 'flazz/vim-colorschemes'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+
+" see :h vundle for more or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" Make vim a little more bearable
 set number
 set relativenumber
 set ruler
 set nocompatible
+set ruler
 
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
+" Syntax
 filetype plugin on
 syntax on
-set background=dark
-colorscheme solarized
 
+" Tabs
 set shiftwidth=4
 set tabstop=4
-set expandtab
+set noexpandtab
+set autoindent
 
+" Make backspace behave like any other editor
 set backspace=indent,eol,start
 
 set encoding=utf-8
 
-let g:NERDTreeWinPos = "right"
-autocmd VimEnter * NERDTree
-
+" Combine the vim clipboard with the regular clipboard
 set clipboard=unnamed
 
-set ruler
+" Key remapings
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" SOLARIZE EVERYTHING
+colorscheme solarized
+set background=dark
+set colorcolumn=80
